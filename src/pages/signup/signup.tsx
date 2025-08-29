@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setAsAuthenticated } from "../../features/auth/auth-slice";
 import { CircleUserRound, AtSign, KeyRound } from "lucide-react";
 import { validateSignup } from "../../utils/auth.utils";
 import { useFetch } from "../../hooks/use-fetch";
@@ -7,11 +9,13 @@ import {
   successNotification,
   errorNotification,
 } from "../../utils/toast.utils";
+import type { AppDispatch } from "../../store/store";
 import type { AuthApiResponse } from "../../custom-types/auth.type";
 
 const baseApiUrl = import.meta.env.VITE_BASE_API_URL;
 
 export default function Signup() {
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   // initializing all the states
@@ -105,7 +109,7 @@ export default function Signup() {
       successNotification(data.message);
 
       // used for filtering navbar
-      localStorage.setItem("isAuthenticated", "true");
+      dispatch(setAsAuthenticated());
 
       // navigate to dashboard
       navigate("/dashboard");

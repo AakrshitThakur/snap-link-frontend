@@ -11,10 +11,6 @@ const Sidebar = () => {
 
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
 
-  // check on every re-render
-  // useEffect(() => {
-  //   const isAuthenticated = localStorage.getItem("isAuthenticated");
-
   // })
   return (
     <>

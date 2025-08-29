@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setAsUnAuthenticated } from "../../features/auth/auth-slice";
 import {
   successNotification,
   errorNotification,
 } from "../../utils/toast.utils";
 import { useFetch } from "../../hooks/use-fetch";
+import type { AppDispatch } from "../../store/store";
 import type { AuthApiResponse } from "../../custom-types/auth.type";
 
 const baseApiUrl = import.meta.env.VITE_BASE_API_URL;
 
 export default function Signout() {
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   // initializing all the states
@@ -51,7 +55,7 @@ export default function Signout() {
       successNotification(data.message);
 
       // used for filtering navbar
-      localStorage.setItem("isAuthenticated", "false");
+      dispatch(setAsUnAuthenticated());
 
       // navigate to sign-in page
       navigate("/signin");
