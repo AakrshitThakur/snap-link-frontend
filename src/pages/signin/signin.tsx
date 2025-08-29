@@ -1,8 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { AtSign, KeyRound } from "lucide-react";
 import { validateSignin } from "../../utils/auth.utils";
+import { useFetch } from "../../hooks/use-fetch";
+import {
+  successNotification,
+  errorNotification,
+} from "../../utils/toast.utils";
+import type { AuthApiResponse } from "../../custom-types/auth.type";
+
+const baseApiUrl = import.meta.env.VITE_BASE_API_URL;
 
 export default function Signin() {
+  const navigate = useNavigate();
+
   // initializing all the states
   const [form, setForm] = useState({
     email: "",
@@ -14,6 +25,13 @@ export default function Signin() {
   });
   const [submitting, setSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
+  // api states
+  const [url, setUrl] = useState<string>("");
+  const [options, setOptions] = useState<RequestInit | undefined>(undefined);
+
+  // custom hook to fetch api
+  const { data, loading, error } = useFetch<AuthApiResponse>(url, options);
 
   // on-change function
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -33,9 +51,52 @@ export default function Signin() {
     const err = validateSignin(form);
     if (typeof err === "object") return setErrors(err);
 
-    setSubmitting(true);
-    // api
+    // waiting for api response
+    setSubmitting(loading);
+
+    // invoke useFetch hook
+    setUrl(baseApiUrl + "/auth/signin");
+    setOptions({
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+      credentials: "include",
+    });
   }
+
+  // on successful sign-in navigate to dashboard
+  useEffect(() => {
+    // set states to initial values
+    if (error) {
+      setForm({
+        email: "",
+        password: "",
+      });
+      setUrl("");
+      setOptions(undefined);
+      setSubmitting(false);
+      errorNotification(error.message);
+    }
+    if (data) {
+      // set states to initial values
+      setForm({
+        email: "",
+        password: "",
+      });
+      setUrl("");
+      setOptions(undefined);
+      setSubmitting(false);
+      successNotification(data.message);
+
+      // used for filtering navbar
+      localStorage.setItem("isAuthenticated", "true");
+
+      // navigate to dashboard
+      navigate("/dashboard");
+    }
+  }, [data, error, navigate]);
 
   return (
     <div

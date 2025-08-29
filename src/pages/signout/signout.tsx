@@ -1,13 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  successNotification,
+  errorNotification,
+} from "../../utils/toast.utils";
+import { useFetch } from "../../hooks/use-fetch";
+import type { AuthApiResponse } from "../../custom-types/auth.type";
+
+const baseApiUrl = import.meta.env.VITE_BASE_API_URL;
 
 export default function Signout() {
+  const navigate = useNavigate();
+
+  // initializing all the states
   const [submitting, setSubmitting] = useState(false);
 
-  // on-submit function
+  // api states
+  const [url, setUrl] = useState<string>("");
+  const [options, setOptions] = useState<RequestInit | undefined>(undefined);
+
+  // custom hook to fetch api
+  const { data, loading, error } = useFetch<AuthApiResponse>(url, options);
+
+  // on-click function
   function signout() {
-    setSubmitting(true);
-    // api
+    // waiting for api response
+    setSubmitting(loading);
+
+    // invoke useFetch hook
+    setUrl(baseApiUrl + "/auth/signout");
+    setOptions({
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
   }
+
+  // on successful sign-in navigate to dashboard
+  useEffect(() => {
+    if (error) {
+      // set states to initial values
+      setSubmitting(false);
+      errorNotification(error.message);
+    }
+    if (data) {
+      // set states to initial values
+      setSubmitting(false);
+      successNotification(data.message);
+
+      // used for filtering navbar
+      localStorage.setItem("isAuthenticated", "false");
+
+      // navigate to sign-in page
+      navigate("/signin");
+    }
+  }, [data, error, navigate]);
 
   return (
     <div

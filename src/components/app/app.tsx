@@ -12,7 +12,7 @@ function App() {
       id="app"
       className="min-h-screen grid grid-cols-1 md:grid-cols-[16rem_1fr]"
     >
-      {/* core app */}
+      {/* page-structure */}
       <Navbar />
       <BrowserRouter>
         <Routes>

@@ -18,5 +18,8 @@ interface SignupErrors {
   password: string;
   confirm: string;
 }
+interface AuthApiResponse {
+  message: string;
+}
 
-export type { SignupUser, SigninUser, SignupErrors, SigninErrors };
+export type { SignupUser, SigninUser, SignupErrors, SigninErrors, AuthApiResponse };

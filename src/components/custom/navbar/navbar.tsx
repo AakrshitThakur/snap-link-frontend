@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronLeft, SquareMenu, LogIn, UserRoundPlus } from "lucide-react";
 import SocialLinks from "../social-links/social-links";
 
@@ -8,6 +8,14 @@ const Sidebar = () => {
   function toggleNavbar() {
     setOpen(!open);
   }
+
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+
+  // check on every re-render
+  // useEffect(() => {
+  //   const isAuthenticated = localStorage.getItem("isAuthenticated");
+
+  // })
   return (
     <>
       {/* Desktop sidebar */}
@@ -27,25 +35,39 @@ const Sidebar = () => {
             </div>
           </div>
           <nav className="flex-1 space-y-1">
-            <a
-              href="/signup"
-              className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
-            >
-              <UserRoundPlus strokeWidth={1} className="h-5 w-5" />
-              <span className="text-sm font-medium">Sign up</span>
-            </a>
-            <a
-              href="/signin"
-              className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
-            >
-              <LogIn strokeWidth={1} className="h-5 w-5" />
-              <span className="text-sm font-medium">Sign in</span>
-            </a>
+            {isAuthenticated ? (
+              <>
+                <a
+                  href="/signout"
+                  className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
+                >
+                  <UserRoundPlus strokeWidth={1} className="h-5 w-5" />
+                  <span className="text-sm font-medium">Sign out</span>
+                </a>
+              </>
+            ) : (
+              <>
+                <a
+                  href="/signup"
+                  className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
+                >
+                  <UserRoundPlus strokeWidth={1} className="h-5 w-5" />
+                  <span className="text-sm font-medium">Sign up</span>
+                </a>
+                <a
+                  href="/signin"
+                  className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
+                >
+                  <LogIn strokeWidth={1} className="h-5 w-5" />
+                  <span className="text-sm font-medium">Sign in</span>
+                </a>
+              </>
+            )}
           </nav>
           <div className="mt-auto solid-border-b">
             <div className="text-xs px-2">v1.0.0</div>
           </div>
-          
+
           {/* social links */}
           <SocialLinks />
         </aside>
