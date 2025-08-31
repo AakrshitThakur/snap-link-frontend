@@ -40,6 +40,14 @@ html {
   color: var(--color-base-content);
 }
 
+.bg-animate {
+  background-image: url("../../../public/images/animate-shapes.svg"); /* path to SVG file */
+  /* background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center; */
+  background-size: 100%;
+}
+
 /* backgound color */
 .color-info {
   background-color: var(--color-info);

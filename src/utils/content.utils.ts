@@ -17,6 +17,8 @@ function getContentTypeColor(contentType: ContentType): string {
       return "bg-[#00897b]";
     case "audio":
       return "bg-[#8e24aa]";
+    case "website":
+      return "bg-[#43a047]";
     case "others":
       return "bg-[#757575]";
   }

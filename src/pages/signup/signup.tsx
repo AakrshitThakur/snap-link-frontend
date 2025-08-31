@@ -119,7 +119,7 @@ export default function Signup() {
   return (
     <div
       id="signup-page"
-      className="color-base-100 color-base-content min-h-screen flex items-center justify-center p-4"
+      className="bg-animate color-base-100 color-base-content min-h-screen flex items-center justify-center p-4"
     >
       <div className="w-full max-w-md rounded-xl shadow-xl overflow-hidden">
         <div className="color-base-200 color-base-content p-8">

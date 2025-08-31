@@ -21,5 +21,15 @@ interface SignupErrors {
 interface AuthApiResponse {
   message: string;
 }
+interface IsAuthenticatedApi {
+  isAuthentcated: boolean;
+}
 
-export type { SignupUser, SigninUser, SignupErrors, SigninErrors, AuthApiResponse };
+export type {
+  SignupUser,
+  SigninUser,
+  SignupErrors,
+  SigninErrors,
+  AuthApiResponse,
+  IsAuthenticatedApi,
+};

@@ -38,8 +38,8 @@ export function useFetch<T>(
         signal: controllerRef.current.signal,
       });
       if (!res.ok) {
-        const data = (await res.json()) as T;
-        return setState({ ...state, error: data });
+        const json = (await res.json()) as T;
+        return setState({ data: null, loading: false, error: json });
       }
       const data = (await res.json()) as T;
 
