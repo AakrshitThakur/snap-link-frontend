@@ -3,20 +3,22 @@ import { setCallApi } from "../../../features/content/content-api-call";
 import { FILTER_CONTENTS } from "../../../constants/content.constant";
 import { capitalizeFirstChar } from "../../../utils/content.utils";
 import type { AppDispatch } from "../../../store/store";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const baseApiUrl = import.meta.env.VITE_BASE_API_URL;
 
-export default function FilterContents() {
+export default function ShareableFilterContents() {
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
+  const { linkId } = useParams();
+
+  console.log(linkId);
 
   function filterContents(f: string) {
     // get all contents
     if (f === "all") {
       dispatch(
         setCallApi({
-          url: baseApiUrl + "/contents/all/",
+          url: baseApiUrl + `/links/${linkId}`,
           options: {
             method: "GET",
             headers: {
@@ -26,13 +28,12 @@ export default function FilterContents() {
           },
         })
       );
-      navigate("/dashboard");
       return;
     }
     // get filtered content
     dispatch(
       setCallApi({
-        url: baseApiUrl + `/contents/all/?type=${f}`,
+        url: baseApiUrl + `/links/${linkId}/?type=${f}`,
         options: {
           method: "GET",
           headers: {
@@ -42,7 +43,6 @@ export default function FilterContents() {
         },
       })
     );
-    navigate("/dashboard");
   }
 
   return (

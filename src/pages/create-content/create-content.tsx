@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { AtSign, KeyRound, Link, MousePointer, Type } from "lucide-react";
+import { Tag, Link, MousePointer, Type } from "lucide-react";
 import { TagChipDelete } from "../../components/custom/tag-chip/tag-chip-delete";
 import { useFetch } from "../../hooks/use-fetch";
 import {
@@ -9,8 +8,10 @@ import {
   errorNotification,
 } from "../../utils/toast.utils";
 import { CONTENT_TYPE } from "../../constants/content.constant";
-import { capitalizeFirstChar } from "../../utils/content.utils";
-import type { AppDispatch } from "../../store/store";
+import {
+  capitalizeFirstChar,
+  validateCreateContent,
+} from "../../utils/content.utils";
 import type {
   CreateContent,
   ContentBasicApi,
@@ -20,7 +21,6 @@ const baseApiUrl = import.meta.env.VITE_BASE_API_URL;
 
 export default function CreateContentPage() {
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
 
   // initializing all the states
   const [form, setForm] = useState<CreateContent>({
@@ -33,7 +33,6 @@ export default function CreateContentPage() {
   const [errors, setErrors] = useState({
     title: "",
     url: "",
-    type: "",
     tags: "",
   });
   const [submitting, setSubmitting] = useState(false);
@@ -51,9 +50,20 @@ export default function CreateContentPage() {
     setTag(e.target.value);
   }
 
+  // push new tag in form.tags
   function pushNewTag() {
-    setForm((curr) => ({ ...curr, tags: [...form.tags, tag] }));
-    setTag("");
+    // validations
+    if (tag.length < 2) errorNotification("Invalid tag name");
+    else if (form.tags.length >= 5) {
+      errorNotification("Only 5 tags are allowed for a content");
+      setTag("");
+    } else if (tag && form.tags.find((t) => t === tag)) {
+      errorNotification("Duplicate tags aren't allowed");
+      setTag("");
+    } else {
+      setForm((curr) => ({ ...curr, tags: [...form.tags, tag] }));
+      setTag("");
+    }
   }
 
   console.log(form);
@@ -74,7 +84,6 @@ export default function CreateContentPage() {
     setErrors({
       title: "",
       url: "",
-      type: "",
       tags: "",
     });
     const err = validateCreateContent(form);
@@ -95,7 +104,7 @@ export default function CreateContentPage() {
     });
   }
 
-  // on successful sign-in navigate to dashboard
+  // on successful creation navigate to dashboard
   useEffect(() => {
     // set states to initial values
     if (error) {
@@ -156,7 +165,7 @@ export default function CreateContentPage() {
                   value={form.title}
                   onChange={handleChange}
                   className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg text-sm"
-                  placeholder="you@example.com"
+                  placeholder="e.g., My Travel Blog Post"
                 />
               </div>
               <span className="text-error text-sm">
@@ -176,7 +185,7 @@ export default function CreateContentPage() {
                   value={form.url}
                   onChange={handleChange}
                   className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg text-sm"
-                  placeholder="Enter password"
+                  placeholder="https://example.com/article"
                 />
               </div>
               <span className="text-error text-sm">
@@ -212,16 +221,16 @@ export default function CreateContentPage() {
                   ))}
                 </select>
               </div>
-              <span className="text-error text-sm">
-                {errors.url && errors.url}
-              </span>
+              {/* <span className="text-error text-sm">
+                {errors.type && errors.type}
+              </span> */}
             </div>
 
             <div>
               <label className="block text-sm font-medium mb-1">Add tags</label>
               <div className="relative flex gap-2 rounded-lg mb-1">
                 <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Link strokeWidth={1} />
+                  <Tag strokeWidth={1} />
                 </span>
                 <input
                   name="tag"
@@ -229,10 +238,11 @@ export default function CreateContentPage() {
                   value={tag}
                   onChange={handleChangeForTag}
                   className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg text-sm"
-                  placeholder="Create a new tag"
+                  placeholder="Add a tag (e.g., travel, tech, food)"
                 />
                 <div className="flex justify-center">
                   <button
+                    type="button"
                     onClick={pushNewTag}
                     className="color-info color-info-content rounded-md text-nowrap px-2 py-2 sm:px-2 sm:py-2
               md:px-3 md:py-2 text-sm sm:text-sm md:text-base cursor-pointer"
@@ -242,17 +252,17 @@ export default function CreateContentPage() {
                 </div>
               </div>
               <div className="flex gap-2 flex-wrap">
-              {form.tags.map((t, idx) => (
-                <TagChipDelete
-                  key={idx}
-                  label={t}
-                  form={form}
-                  setForm={setForm}
-                />
-              ))}
+                {form.tags.map((t, idx) => (
+                  <TagChipDelete
+                    key={idx}
+                    label={t}
+                    form={form}
+                    setForm={setForm}
+                  />
+                ))}
               </div>
               <span className="text-error text-sm">
-                {errors.url && errors.url}
+                {errors.tags && errors.tags}
               </span>
             </div>
 

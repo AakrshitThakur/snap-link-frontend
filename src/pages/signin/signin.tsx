@@ -179,7 +179,7 @@ export default function Signin() {
 
           <div className="text-center">
             <p className="text-sm">
-              Don’t have an account?{" "}
+              Don't have an account?{" "}
               <a
                 href="/signup"
                 className="hover-color rounded-md text-sm px-3 py-2 font-medium hover:underline focus:outline-none focus:underline cursor-pointer"

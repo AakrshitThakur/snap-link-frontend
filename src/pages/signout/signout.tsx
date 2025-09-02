@@ -78,7 +78,7 @@ console.log("hi");
             <button
               onClick={signout}
               disabled={submitting}
-              className="color-warning color-warning-content rounded-md text-nowrap px-2 py-2 sm:px-2 sm:py-2
+              className="color-error color-error-content rounded-md text-nowrap px-2 py-2 sm:px-2 sm:py-2
               md:px-3 md:py-2 text-sm sm:text-sm md:text-base cursor-pointer"
             >
               {submitting ? "Please wait..." : "Sign out"}

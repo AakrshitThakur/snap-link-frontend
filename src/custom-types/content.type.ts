@@ -24,6 +24,15 @@ interface GetAllContentApi {
   message: string;
   contents?: Content[];
 }
+interface ShareableContentsApi {
+  message: string;
+  username?: string;
+  contents?: Content[];
+}
+interface UpdateContentApi {
+  message: string;
+  content?: Content;
+}
 
 interface CreateContent {
   title: string;
@@ -35,4 +44,19 @@ interface ContentBasicApi {
   message: string;
 }
 
-export type { Content, ContentType, GetAllContentApi, CreateContent, ContentBasicApi };
+interface CreateContentErrors {
+  title: string;
+  url: string;
+  tags: string;
+}
+
+export type {
+  Content,
+  ContentType,
+  UpdateContentApi,
+  GetAllContentApi,
+  CreateContent,
+  ContentBasicApi,
+  CreateContentErrors,
+  ShareableContentsApi,
+};

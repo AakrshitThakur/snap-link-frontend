@@ -1,19 +1,18 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Pencil, Share2, Trash2, Check, Copy } from "lucide-react";
+import { Check, Copy } from "lucide-react";
 import {
   capitalizeFirstChar,
   getContentTypeColor,
 } from "../../../utils/content.utils";
 import { TagChip } from "../tag-chip/tag-chip";
-import type { Content } from "../../../custom-types/content.type";
 import { infoNotification } from "../../../utils/toast.utils";
+import type { Content } from "../../../custom-types/content.type";
 
 type ContentCardProps = {
   content: Content;
 };
 
-export function ContentCard({ content }: ContentCardProps) {
+export function ShareableContentCard({ content }: ContentCardProps) {
   // copy to clipboard state
   const [copied, setCopied] = useState(false);
 
@@ -27,6 +26,7 @@ export function ContentCard({ content }: ContentCardProps) {
       // toggling back to normal
       setTimeout(() => setCopied(false), 1500);
 
+      // info notification
       infoNotification("URL copied to clipboard successfully");
     } catch {}
   }
@@ -43,39 +43,9 @@ export function ContentCard({ content }: ContentCardProps) {
             {capitalizeFirstChar(content.type)}
           </span>
           <span
-            className={`rounded-full h-4 w-4 animate-pulse
+            className={`rounded-full h-4 w-4 
               ${getContentTypeColor(content.type)}`}
           ></span>
-        </div>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            aria-label="Share note"
-            className="hover-color rounded-lg p-2 cursor-pointer"
-            onClick={() =>
-              infoNotification("Sharing individual link feature — coming soon")
-            }
-          >
-            <Share2 className="h-4 w-4" />
-          </button>
-          <button
-            type="button"
-            aria-label="More options"
-            className="hover-color rounded-lg p-2 cursor-pointer"
-          >
-            <Link to={`/contents/${content._id}/update`}>
-              <Pencil className="h-4 w-4" />
-            </Link>
-          </button>
-          <button
-            type="button"
-            aria-label="Delete note"
-            className="hover-color rounded-lg p-2 cursor-pointer"
-          >
-            <Link to={`/contents/${content._id}/delete`}>
-              <Trash2 className="h-4 w-4" />
-            </Link>
-          </button>
         </div>
       </header>
 

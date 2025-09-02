@@ -30,6 +30,15 @@ const FILTER_CONTENTS = {
   others: MoreHorizontal,
 };
 
+const TAG_REGEX = /^[a-zA-Z0-9_\s]{2,}$/;
+const TITLE_REGEX = /^[a-zA-Z0-9_]{3,35}$/;
+
 const CONTENT_TYPE_MAX_LENGTH = 25;
 
-export { CONTENT_TYPE, CONTENT_TYPE_MAX_LENGTH, FILTER_CONTENTS };
+export {
+  CONTENT_TYPE,
+  CONTENT_TYPE_MAX_LENGTH,
+  FILTER_CONTENTS,
+  TAG_REGEX,
+  TITLE_REGEX,
+};

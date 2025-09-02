@@ -3,7 +3,7 @@ export default function BasicSpinner() {
     <svg
       id="basic-spinner"
       aria-hidden="true"
-      className="inline w-10 h-10 animate-spin color-base-content fill-[#091444]"
+      className="inline w-18 h-18 animate-spin text-[rgba(255,255,255,0.1)] fill-[#091444]"
       viewBox="0 0 100 101"
       fill="#091444"
       xmlns="http://www.w3.org/2000/svg"

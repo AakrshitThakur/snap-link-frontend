@@ -32,7 +32,7 @@ const Sidebar = () => {
         <div className="h-4" />
         <aside className="flex h-full flex-col gap-3 p-4">
           <div className="flex items-center justify-between px-2 pb-2 solid-border-b">
-            <div className="flex items-center gap-2">
+            <Link to="/dashboard" className="flex items-center gap-2">
               <span className="h-9 w-9">
                 <img
                   className="h-full w-full rounded-lg"
@@ -41,26 +41,26 @@ const Sidebar = () => {
                 />
               </span>
               <span className="text-lg font-semibold">SnapLink</span>
-            </div>
+            </Link>
           </div>
           <nav className="flex-1 space-y-1">
             {isAuthenticated ? (
               <>
-              <div className="solid-border-b flex-1 space-y-1 pb-1">
-                <Link
-                  to="/signout"
-                  className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
-                >
-                  <LogOut strokeWidth={1} className="h-5 w-5" />
-                  <span className="text-sm font-medium">Sign out</span>
-                </Link>
-                <Link
-                  to="/dashboard"
-                  className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
-                >
-                  <LayoutDashboard strokeWidth={1} className="h-5 w-5" />
-                  <span className="text-sm font-medium">Dashboard</span>
-                </Link>
+                <div className="solid-border-b flex-1 space-y-1 pb-1">
+                  <Link
+                    to="/signout"
+                    className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
+                  >
+                    <LogOut strokeWidth={1} className="h-5 w-5" />
+                    <span className="text-sm font-medium">Sign out</span>
+                  </Link>
+                  <Link
+                    to="/dashboard"
+                    className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
+                  >
+                    <LayoutDashboard strokeWidth={1} className="h-5 w-5" />
+                    <span className="text-sm font-medium">Dashboard</span>
+                  </Link>
                 </div>
                 <FilterContents />
               </>
@@ -99,9 +99,9 @@ const Sidebar = () => {
             className="absolute inset-0 bg-black/40"
             onClick={() => setOpen(false)}
           />
-          <aside className="color-base-300 color-base-content absolute left-0 top-0 bottom-0 z-50 w-72 p-4 flex flex-col">
+          <aside className="color-base-300 color-base-content absolute left-0 top-0 bottom-0 z-50 w-72 p-4 flex flex-col overflow-y-scroll">
             <div className="flex items-center justify-between px-2 pb-2 solid-border-b">
-              <div className="flex items-center gap-2">
+              <Link to="/dashboard" className="flex items-center gap-2">
                 <span className="h-9 w-9">
                   <img
                     className="h-full w-full rounded-lg"
@@ -110,7 +110,7 @@ const Sidebar = () => {
                   />
                 </span>
                 <span className="text-lg font-semibold">SnapLink</span>
-              </div>
+              </Link>
               <button
                 onClick={() => setOpen(false)}
                 className="p-2 rounded-xl hover-color cursor-pointer"
@@ -122,13 +122,22 @@ const Sidebar = () => {
             <nav className="space-y-1 p-1 solid-border-b">
               {isAuthenticated ? (
                 <>
-                  <Link
-                    to="/signout"
-                    className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
-                  >
-                    <LogOut strokeWidth={1} className="h-5 w-5" />
-                    <span className="text-sm font-medium">Sign out</span>
-                  </Link>
+                  <div className="solid-border-b flex-1 space-y-1 pb-1">
+                    <Link
+                      to="/signout"
+                      className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
+                    >
+                      <LogOut strokeWidth={1} className="h-5 w-5" />
+                      <span className="text-sm font-medium">Sign out</span>
+                    </Link>
+                    <Link
+                      to="/dashboard"
+                      className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
+                    >
+                      <LayoutDashboard strokeWidth={1} className="h-5 w-5" />
+                      <span className="text-sm font-medium">Dashboard</span>
+                    </Link>
+                  </div>
                   <FilterContents />
                 </>
               ) : (
@@ -160,7 +169,7 @@ const Sidebar = () => {
           onClick={toggleNavbar}
         >
           <SquareMenu
-            strokeWidth={1}
+            strokeWidth={1.25}
             className="color-base-content w-7 sm:w-8 md:w-9 h-auto mt-1 mr-1 sm:mt-2 sm:mr-2 cursor-pointer"
           />
         </span>
@@ -171,7 +180,10 @@ const Sidebar = () => {
 
 export default function Navbar() {
   return (
-    <section id="navbar" className="color-base-300 color-base-content">
+    <section
+      id="navbar"
+      className="color-base-300 color-base-content md:h-screen overflow-y-scroll overflow-x-hidden"
+    >
       <Sidebar />
     </section>
   );
