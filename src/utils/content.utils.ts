@@ -1,4 +1,4 @@
-import { TAG_REGEX, TITLE_REGEX } from "../constants/content.constant";
+import { TAG_REGEX } from "../constants/content.constant";
 import type {
   CreateContent,
   ContentType,
@@ -61,7 +61,7 @@ function validateCreateContent(
   }
 
   // validating tags field
-  for (let t of form.tags) {
+  for (const t of form.tags) {
     if (!TAG_REGEX.test(t)) {
       errors.tags =
         "Title must be at least 2 characters long and contain only letters, numbers, or underscores.";

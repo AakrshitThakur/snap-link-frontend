@@ -44,9 +44,12 @@ export function useFetch<T>(
       const data = (await res.json()) as T;
 
       setState({ data, loading: false, error: null });
-    } catch (err: any) {
-      if (err.name === "AbortError") return; // ignore cancelled
-      setState({ data: null, loading: false, error: err.message });
+    } catch (err) {
+      if (err instanceof Error) {
+        setState({ data: null, loading: false, error: err.message as T });
+      } else {
+        setState({ data: null, loading: false, error: err as T });
+      }
     }
   }, [url, options]);
 

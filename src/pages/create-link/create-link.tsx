@@ -39,7 +39,13 @@ export default function CreateLink() {
       setTimeout(() => setCopied(false), 1500);
 
       infoNotification("URL copied to clipboard successfully");
-    } catch {}
+    } catch (error) {
+      if (error instanceof Error) {
+        errorNotification(error.message);
+      } else {
+        errorNotification(error as string);
+      }
+    }
   }
 
   function createLink() {

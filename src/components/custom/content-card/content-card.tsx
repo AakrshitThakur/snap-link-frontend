@@ -7,7 +7,10 @@ import {
 } from "../../../utils/content.utils";
 import { TagChip } from "../tag-chip/tag-chip";
 import type { Content } from "../../../custom-types/content.type";
-import { infoNotification } from "../../../utils/toast.utils";
+import {
+  infoNotification,
+  errorNotification,
+} from "../../../utils/toast.utils";
 
 type ContentCardProps = {
   content: Content;
@@ -28,7 +31,11 @@ export function ContentCard({ content }: ContentCardProps) {
       setTimeout(() => setCopied(false), 1500);
 
       infoNotification("URL copied to clipboard successfully");
-    } catch {}
+    } catch (error) {
+      if (error instanceof Error) {
+        errorNotification(error.message);
+      }
+    }
   }
 
   return (
