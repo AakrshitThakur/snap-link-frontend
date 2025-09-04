@@ -1,69 +1,59 @@
-# React + TypeScript + Vite
+# Snap Link
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A MERN stack–based web application for organizing and storing your valuable links / URLs, with the added capability of sharing them publicly in a single click.  
 
-Currently, two official plugins are available:
+---  
+## Visuals
+<div align="center">  
+<img alt="Dashboard page" src="https://github.com/AakrshitThakur/snap-link-frontend/blob/main/public/images/screenshots/dashboard.png?raw=true" width="800" height="400"><br>  
+<sup>Dashboard page visual<sup>  
+</div>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<div align="center">  
+<img alt="Generate link page" src="https://github.com/AakrshitThakur/snap-link-frontend/blob/main/public/images/screenshots/generate-link.jpeg?raw=true" width="800" height="400"><br>  
+<sup>Generate link page visual<sup>  
+</div>
 
-## Expanding the ESLint configuration
+<div align="center">  
+<img alt="Sign in page" src="https://github.com/AakrshitThakur/snap-link-frontend/blob/main/public/images/screenshots/signin.jpeg?raw=true" width="800" height="400"><br>  
+<sup>Sign in page visual<sup>  
+</div>
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Features
+- ⚡️ A React frontend implemented with TypeScript to ensure robust type safety
+- 🎨 Styled with Tailwind CSS
+- 📦 Implemented React Redux to manage global application state efficiently
+- 🔧 Easy to extend and customize  
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Project Structure
+your-project/  
+├── public/          # Static files  
+├── src/             # Application source code  
+│   ├── components/  # All components  
+&nbsp;| &nbsp; | &nbsp; ├── custom # All custom components  
+│   ├── pages/       # Page components  
+│   ├── hooks/  # All custom hooks  
+│   ├── custom-types/  # All custom TypeScript types  
+│   ├── constants/  # All constants  
+│   ├── utils/  # All utility functions  
+│   ├── wrappers/  # All custom wrappers  
+│   ├── features/  # All slices  
+│   ├── store/  # A global store  
+├── package.json     # Dependencies & scripts  
+├── README.md        # Project documentation  
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📦 Installation
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Clone the repository and install dependencies:  
+
+```bash
+git clone https://github.com/AakrshitThakur/snap-link-frontend.git
+cd snap-link-frontend
+npm install
+# or
+yarn install```  
+
