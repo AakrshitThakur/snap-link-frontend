@@ -12,12 +12,14 @@ A MERN stack–based web application for organizing and storing your valuable li
 <div align="center">  
 <img alt="Generate link page" src="https://github.com/AakrshitThakur/snap-link-frontend/blob/main/public/images/screenshots/generate-link.jpeg?raw=true" width="800" height="400"><br>  
 <sup>Generate link page visual<sup>  
-</div>
+</div>  
 
 <div align="center">  
 <img alt="Sign in page" src="https://github.com/AakrshitThakur/snap-link-frontend/blob/main/public/images/screenshots/signin.jpeg?raw=true" width="800" height="400"><br>  
 <sup>Sign in page visual<sup>  
 </div>
+
+---  
 
 
 ## 🚀 Features
@@ -33,10 +35,10 @@ your-project/
 ├── public/          # Static files  
 ├── src/             # Application source code  
 │   ├── components/  # All components  
-&nbsp;| &nbsp; | &nbsp; ├── custom # All custom components  
+| &nbsp; | &nbsp; ├── custom # All custom components  
 │   ├── pages/       # Page components  
-│   ├── hooks/  # All custom hooks  
-│   ├── custom-types/  # All custom TypeScript types  
+|   ├── hooks/  # All custom hooks  
+|   ├── custom-types/  # All custom TypeScript types  
 │   ├── constants/  # All constants  
 │   ├── utils/  # All utility functions  
 │   ├── wrappers/  # All custom wrappers  
@@ -44,6 +46,8 @@ your-project/
 │   ├── store/  # A global store  
 ├── package.json     # Dependencies & scripts  
 ├── README.md        # Project documentation  
+
+---  
 
 
 ## 📦 Installation
