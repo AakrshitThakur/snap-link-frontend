@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { Frown } from "lucide-react";
 import { ShareableContentCard } from "../../components/custom/s-content-card/s-content-card";
 // import type { Content } from "../../custom-types/content.type";
 import { useFetch } from "../../hooks/use-fetch";
@@ -96,7 +97,7 @@ export default function ShareableContents() {
   return (
     <main
       id="shareable-dashboard"
-      className="bg-animate color-base-100 color-base-content h-screen overflow-y-scroll mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8"
+      className="bg-animate color-base-100 color-base-content h-screen flex flex-col overflow-y-scroll mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8"
     >
       {/* loading during API execution */}
       {loading || !data ? (
@@ -115,13 +116,22 @@ export default function ShareableContents() {
             </h1>
           </section>
 
-          <section aria-label="Notes list">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {contents?.map((c, idx) => (
-                <ShareableContentCard key={idx} content={c} />
-              ))}
-            </div>
-          </section>
+          {contents && contents.length < 1 ? (
+            <section className="flex-1 flex flex-col justify-center items-center">
+              <p className="flex gap-1">
+                No contents found
+                <Frown strokeWidth={1} />
+              </p>
+            </section>
+          ) : (
+            <section aria-label="Notes list">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+                {contents?.map((c, idx) => (
+                  <ShareableContentCard key={idx} content={c} />
+                ))}
+              </div>
+            </section>
+          )}
         </>
       )}
     </main>

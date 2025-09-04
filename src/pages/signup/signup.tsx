@@ -11,6 +11,7 @@ import {
 } from "../../utils/toast.utils";
 import type { AppDispatch } from "../../store/store";
 import type { AuthApiResponse } from "../../custom-types/auth.type";
+import InfoAlert from "../../components/custom/alert/info.alert";
 
 const baseApiUrl = import.meta.env.VITE_BASE_API_URL;
 
@@ -119,8 +120,9 @@ export default function Signup() {
   return (
     <div
       id="signup-page"
-      className="bg-animate color-base-100 color-base-content min-h-screen flex items-center justify-center p-4"
+      className="bg-animate color-base-100 color-base-content min-h-screen flex items-center justify-center p-4 mt-2"
     >
+      <InfoAlert />
       <div className="w-full max-w-md rounded-xl shadow-xl overflow-hidden">
         <div className="color-base-200 color-base-content p-8">
           <div className="text-center mb-8">
@@ -128,7 +130,7 @@ export default function Signup() {
             <p className="text-sm">Join us today to get started</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4 mb-3">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium mb-1">Username</label>
               <div className="relative rounded-lg mb-1">

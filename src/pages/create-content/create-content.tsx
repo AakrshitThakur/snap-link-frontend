@@ -152,7 +152,7 @@ export default function CreateContentPage() {
             <p className="text-sm">Creating new content</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4 mb-3">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium mb-1">Title</label>
               <div className="relative rounded-lg mb-1">

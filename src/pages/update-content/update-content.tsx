@@ -194,7 +194,7 @@ export default function UpdateContent() {
           <span className="sr-only">Loading...</span>
         </div>
       ) : (
-        <div className="solid border w-full max-w-md rounded-xl overflow-hidden">
+        <div className="solid-border w-full max-w-md rounded-xl overflow-hidden">
           <div className="color-base-200 color-base-content p-8">
             <div className="text-center mb-8">
               <h1 className="text-3xl font-bold">Update Content</h1>

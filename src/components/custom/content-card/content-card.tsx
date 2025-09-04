@@ -40,7 +40,7 @@ export function ContentCard({ content }: ContentCardProps) {
 
   return (
     <article
-      className="solid-border color-base-200 color-base-content flex h-full flex-col rounded-2xl p-5 transition delay-150 duration-300 ease-out hover:-translate-y-1"
+      className="solid-border color-base-200 color-base-content flex h-full flex-col rounded-2xl p-5 transition duration-700 ease-in-out hover:scale-105"
       role="region"
       aria-labelledby={`${content.title}-title`}
     >
