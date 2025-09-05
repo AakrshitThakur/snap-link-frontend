@@ -113,8 +113,8 @@ export default function CreateLink() {
     >
       <div className="color-base-200 color-base-content solid-border w-full max-w-md flex flex-col items-center justify-center rounded-lg p-6">
         <div className="mb-3">
-          <div className="flex justify-center gap-1">
-            <h2 className="text-lg font-semibold text-foreground text-pretty">
+          <div className="flex justify-center items-center gap-1">
+            <h2 className="text-lg text-center font-semibold text-foreground text-pretty">
               {linkId
                 ? "Share Your Valuable Links with the World"
                 : "Generate a Shareable Link"}
@@ -123,9 +123,9 @@ export default function CreateLink() {
           </div>
         </div>
 
-        <div className="mb-3 flex items-center flex-wrap gap-2 rounded-xl border px-2.5 py-1.5">
+        <div className="mb-3 flex items-center align-center flex-wrap gap-2 rounded-xl border px-2.5 py-1.5">
           <span
-            className="truncate text-xs"
+            className="text-xs break-all"
             title={linkId}
             aria-label="Content link"
           >
@@ -165,7 +165,7 @@ export default function CreateLink() {
               type="button"
               className="color-success color-success-content rounded-md px-3 py-2 text-sm font-medium cursor-pointer"
             >
-              {isSubmitting ? "Please wait..." : "Create link"}
+              {isSubmitting ? "Please wait..." : "Generate link"}
             </button>
           )}
         </div>

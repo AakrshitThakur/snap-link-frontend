@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAsAuthenticated } from "../../features/auth/auth-slice";
 import { CircleUserRound, AtSign, KeyRound } from "lucide-react";
@@ -120,7 +120,7 @@ export default function Signup() {
   return (
     <div
       id="signup-page"
-      className="bg-animate color-base-100 color-base-content min-h-screen flex items-center justify-center p-4 mt-2"
+      className="bg-animate color-base-100 color-base-content h-screen overflow-y-scroll flex items-center justify-center p-4 mt-2"
     >
       <InfoAlert />
       <div className="w-full max-w-md rounded-xl shadow-xl overflow-hidden">
@@ -235,12 +235,14 @@ export default function Signup() {
           <div className="text-center">
             <p className="text-sm">
               Already have an account?{" "}
-              <button
-                type="button"
-                className="hover-color rounded-md text-sm px-3 py-2 font-medium hover:underline focus:outline-none focus:underline cursor-pointer"
-              >
-                Sign in
-              </button>
+              <Link to="/signin">
+                <button
+                  type="button"
+                  className="hover-color rounded-md text-sm px-3 py-2 font-medium hover:underline focus:outline-none focus:underline cursor-pointer"
+                >
+                  Sign in
+                </button>
+              </Link>
             </p>
           </div>
         </div>

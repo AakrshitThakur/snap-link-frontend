@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAsAuthenticated } from "../../features/auth/auth-slice";
 import { AtSign, KeyRound } from "lucide-react";
@@ -107,7 +107,7 @@ export default function Signin() {
   return (
     <div
       id="signin-page"
-      className="bg-animate color-base-100 color-base-content min-h-screen flex items-center justify-center p-4"
+      className="bg-animate color-base-100 color-base-content h-screen overflow-y-scroll flex items-center justify-center p-4"
     >
       <InfoAlert />
       <div className="w-full max-w-md rounded-xl shadow-xl overflow-hidden">
@@ -182,12 +182,13 @@ export default function Signin() {
           <div className="text-center">
             <p className="text-sm">
               Don't have an account?{" "}
-              <a
-                href="/signup"
+              <Link to="/signup">
+              <button
                 className="hover-color rounded-md text-sm px-3 py-2 font-medium hover:underline focus:outline-none focus:underline cursor-pointer"
               >
                 Sign up
-              </a>
+              </button>
+              </Link>
             </p>
           </div>
         </div>
