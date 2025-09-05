@@ -117,7 +117,7 @@ export default function Signin() {
             <p className="text-sm">Sign in to continue</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4 mb-3">
+          <form onSubmit={handleSubmit} className="space-y-4 mb-2">
             <div>
               <label className="block text-sm font-medium mb-1">Email</label>
               <div className="relative rounded-lg mb-1">

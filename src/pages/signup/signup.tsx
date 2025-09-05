@@ -130,7 +130,7 @@ export default function Signup() {
             <p className="text-sm">Join us today to get started</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 mb-2">
             <div>
               <label className="block text-sm font-medium mb-1">Username</label>
               <div className="relative rounded-lg mb-1">
