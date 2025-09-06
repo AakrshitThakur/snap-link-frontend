@@ -34,21 +34,23 @@ A MERN stack–based web application for organizing and storing your valuable li
 
 ## Project Structure
 
+<pre stype="white-space: pre; overflow-x: auto">
 your-project/  
-├── public/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Static files  
-├── src/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Application source code  
-&nbsp;| ├── components/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# All components  
-&nbsp;|&nbsp; | ├── custom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# All custom components  
-&nbsp;| ├── pages/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Page components  
-&nbsp;| ├── hooks/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# All custom hooks  
-&nbsp;| ├── custom-types/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# All custom TypeScript types  
-&nbsp;| ├── constants/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# All constants  
-&nbsp;| ├── utils/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# All utility functions  
-&nbsp;| ├── wrappers/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# All custom wrappers  
-&nbsp;| ├── features/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# All slices  
-&nbsp;| ├── store/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# A global store  
-├── package.json&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Dependencies & scripts  
-├── README.md&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Project documentation
+├── public/          # Static files  
+├── src/             # Application source code  
+| ├── components/    # All components  
+| | ├── custom       # All custom components  
+| ├── pages/         # Page components  
+| ├── hooks/         # All custom hooks  
+| ├── custom-types/  # All custom TypeScript types  
+| ├── constants/     # All constants  
+| ├── utils/         # All utility functions  
+| ├── wrappers/      # All custom wrappers  
+| ├── features/      # All slices  
+| ├── store/         # A global store  
+├── package.json     # Dependencies & scripts  
+├── README.md        # Project documentation  
+</pre>
 
 ---
 
