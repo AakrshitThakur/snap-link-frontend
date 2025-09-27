@@ -50,40 +50,15 @@ export default function Dashboard() {
         },
       })
     );
-    // setUrl(baseApiUrl + "/contents/all");
-    // setOptions({
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   credentials: "include",
-    // });
   }, []);
 
   useEffect(() => {
     if (data) {
-      // do not want to call api on intervals
-      // dispatch(
-      //   setCallApi({
-      //     url: "",
-      //     options: undefined,
-      //   })
-      // );
-      // setUrl("");
-      // setOptions(undefined);
       setContents(data?.contents);
       successNotification(data.message);
     }
     if (error) {
       // api error
-      // dispatch(
-      //   setCallApi({
-      //     url: "",
-      //     options: undefined,
-      //   })
-      // );
-      // setUrl("");
-      // setOptions(undefined);
       errorNotification(error.message);
     }
   }, [data, error]);

@@ -97,6 +97,9 @@ html {
 .color-base-content {
   color: var(--color-base-content);
 }
+.color-accent-content {
+  color: var(--color-accent-content);
+}
 .color-warning-content {
   color: var(--color-warning-content);
 }

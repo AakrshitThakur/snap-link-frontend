@@ -22,12 +22,12 @@ function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div
       id="app"
-      className="min-h-screen grid grid-cols-1 md:grid-cols-[16rem_1fr]"
+      className="h-screen grid grid-cols-1 grid-rows-[0fr_1fr] md:grid-rows-none md:grid-cols-[16rem_1fr] flex-col relative overflow-y-auto"
     >
       {!isShareableContents ? (
         <>
           <Navbar />
-          <div className="right">{children}</div>
+          <div className="right flex-1">{children}</div>
         </>
       ) : (
         <>{children}</>
