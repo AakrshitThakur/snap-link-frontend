@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Tag, Link, MousePointer, Type } from "lucide-react";
+import { Tag, Link, MousePointer, Type, Pencil } from "lucide-react";
 import { TagChipDelete } from "../../components/custom/tag-chip/tag-chip-delete";
 import { useFetch } from "../../hooks/use-fetch";
 import BasicSpinner from "../../components/custom/spinners/basic-spinner";
@@ -81,14 +81,12 @@ export default function UpdateContent() {
     }
   }
 
-  console.log(form);
-
   // on-change function
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    setForm((prev) => ({ ...prev, [name]: value.trim() }));
   }
 
   // on-submit function
@@ -105,7 +103,7 @@ export default function UpdateContent() {
     if (typeof err === "object") return setErrors(err);
 
     // waiting for api response
-    setSubmitting(loading);
+    setSubmitting(true);
 
     // invoke useFetch hook
     setUrl(baseApiUrl + `/contents/${contentId}/update`);
@@ -139,12 +137,6 @@ export default function UpdateContent() {
     }
     if (data?.content) {
       // set states to initial values
-      //   setForm({
-      //     title: "",
-      //     url: "",
-      //     type: "website",
-      //     tags: [],
-      //   });
       setForm({
         title: data.content.title,
         url: data.content.url,
@@ -156,13 +148,6 @@ export default function UpdateContent() {
       setSubmitting(loading);
       successNotification(data.message);
     } else if (data) {
-      // set states to initial values
-      //   setForm({
-      //     title: "",
-      //     url: "",
-      //     type: "website",
-      //     tags: [],
-      //   });
       setForm({
         title: "",
         url: "",
@@ -181,31 +166,36 @@ export default function UpdateContent() {
 
   return (
     <div
-      id="signup-page"
-      className="bg-animate color-base-100 color-base-content min-h-screen flex items-center justify-center p-4"
+      id="update-content-page"
+      className="bg-animate color-base-100 color-base-content relative h-full w-full flex items-center justify-center p-5 sm:p-10 md:p-15"
     >
       {/* loading during API execution */}
       {loading || !data?.content ? (
         <div
-          className="flex justify-center items-center min-h-screen"
+          className="flex justify-center items-center h-full w-full"
           role="status"
         >
           <BasicSpinner />
           <span className="sr-only">Loading...</span>
         </div>
       ) : (
-        <div className="solid-border w-full max-w-md rounded-xl overflow-hidden">
-          <div className="color-base-200 color-base-content p-8">
-            <div className="text-center mb-8">
+        <div className="solid-border w-full max-w-lg rounded-xl overflow-hidden">
+          <div className="color-base-200 color-base-content p-9">
+            <div className="flex flex-col items-center gap-1">
+              <span className="rounded-full color-accent color-accent-content w-11 sm:w-13 md:w-15 h-auto p-2">
+                <Pencil strokeWidth={1.25} className="w-full h-full" />
+              </span>
               <h1 className="text-3xl font-bold">Update Content</h1>
               <p className="text-sm">Updating existing content</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="block text-sm font-medium mb-1">Title</label>
-                <div className="relative rounded-lg mb-1">
-                  <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <label className="block text-base font-medium mb-1">
+                  Title
+                </label>
+                <div className="relative text-sm rounded-lg mb-1">
+                  <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
                     {/* mail icon */}
                     <Type strokeWidth={1} />
                   </span>
@@ -213,19 +203,19 @@ export default function UpdateContent() {
                     name="title"
                     value={form.title}
                     onChange={handleChange}
-                    className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg text-sm"
+                    className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg"
                     placeholder="e.g., My Travel Blog Post"
                   />
                 </div>
-                <span className="text-error text-sm">
+                <span className="text-error">
                   {errors.title && errors.title}
                 </span>
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">URL</label>
-                <div className="relative rounded-lg mb-1">
-                  <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <label className="block text-base font-medium mb-1">URL</label>
+                <div className="relative text-sm rounded-lg mb-1">
+                  <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
                     <Link strokeWidth={1} />
                   </span>
                   <input
@@ -233,26 +223,24 @@ export default function UpdateContent() {
                     type="text"
                     value={form.url}
                     onChange={handleChange}
-                    className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg text-sm"
+                    className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg"
                     placeholder="https://example.com/article"
                   />
                 </div>
-                <span className="text-error text-sm">
-                  {errors.url && errors.url}
-                </span>
+                <span className="text-error">{errors.url && errors.url}</span>
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-base font-medium mb-1">
                   Choose a type
                 </label>
                 <div className="relative rounded-lg mb-1">
-                  <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
                     <MousePointer strokeWidth={1} />
                   </span>
                   <select
                     id="my-dropdown"
-                    className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg text-sm"
+                    className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg"
                     name="type"
                     value={form.type}
                     onChange={handleChange}
@@ -260,7 +248,7 @@ export default function UpdateContent() {
                     {CONTENT_TYPE.map((c, idx) => (
                       <>
                         <option
-                          className="color-neutral color-neutral-content text-sm"
+                          className="color-neutral color-neutral-content"
                           key={idx}
                           value={c}
                         >
@@ -270,17 +258,14 @@ export default function UpdateContent() {
                     ))}
                   </select>
                 </div>
-                {/* <span className="text-error text-sm">
-                {errors.type && errors.type}
-              </span> */}
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-base font-medium mb-1">
                   Add tags
                 </label>
-                <div className="relative flex gap-2 rounded-lg mb-1">
-                  <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <div className="relative text-sm flex gap-2 rounded-lg mb-1">
+                  <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
                     <Tag strokeWidth={1} />
                   </span>
                   <input
@@ -288,7 +273,7 @@ export default function UpdateContent() {
                     type="text"
                     value={tag}
                     onChange={handleChangeForTag}
-                    className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg text-sm"
+                    className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg"
                     placeholder="Add a tag (e.g., travel, tech, food)"
                   />
                   <div className="flex justify-center">
@@ -312,19 +297,26 @@ export default function UpdateContent() {
                     />
                   ))}
                 </div>
-                <span className="text-error text-sm">
-                  {errors.tags && errors.tags}
-                </span>
+                <span className="text-error">{errors.tags && errors.tags}</span>
               </div>
 
               <div className="flex justify-center">
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="color-success color-success-content rounded-md text-nowrap px-2 py-2 sm:px-2 sm:py-2
-              md:px-3 md:py-2 text-sm sm:text-sm md:text-base cursor-pointer"
+                  className={`color-success color-success-content rounded-md text-nowrap px-2 py-2 sm:px-2 sm:py-2
+              md:px-3 md:py-2 text-sm sm:text-sm md:text-base ${
+                submitting ? "cursor-progress" : "cursor-pointer"
+              }`}
                 >
-                  {submitting ? "Please wait..." : "Update"}
+                  {submitting ? (
+                    <div className="flex justify-center items-center gap-1">
+                      <div className="w-4 h-4 animate-spin rounded-full border-2 border-[rgb(0,10,2)] border-t-transparent" />
+                      <p>Updating...</p>
+                    </div>
+                  ) : (
+                    "Update"
+                  )}
                 </button>
               </div>
             </form>

@@ -115,7 +115,7 @@ export default function Signup() {
   return (
     <div
       id="signup-page"
-      className="bg-animate color-base-100 color-base-content relative h-full w-full flex items-center justify-center p-15"
+      className="bg-animate color-base-100 color-base-content relative h-full w-full flex items-center justify-center p-5 sm:p-10 md:p-15"
     >
       <InfoAlert />
       <div className="color-base-200 color-base-content p-8 w-full max-w-lg rounded-xl">

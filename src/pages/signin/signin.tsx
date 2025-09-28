@@ -105,7 +105,7 @@ export default function Signin() {
   return (
     <div
       id="signin-page"
-      className="bg-animate color-base-100 color-base-content relative h-full w-full overflow-y-scroll flex items-center justify-center p-15"
+      className="bg-animate color-base-100 color-base-content relative h-full w-full flex items-center justify-center p-5 sm:p-10 md:p-15"
     >
       <InfoAlert />
       <div className="w-full max-w-lg rounded-xl overflow-hidden">
@@ -122,7 +122,7 @@ export default function Signin() {
             <div>
               <label className="block text-base font-medium mb-1">Email</label>
               <div className="relative rounded-lg mb-1 text-sm">
-                <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
                   {/* mail icon */}
                   <AtSign strokeWidth={1} />
                 </span>

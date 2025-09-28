@@ -2,7 +2,7 @@ import { Github, Linkedin, Handshake } from "lucide-react";
 
 export default function SocialLinks() {
   return (
-    <section id="social-links" className="space-y-1">
+    <section id="social-links" className="space-y-1 pb-1">
       <div>
         <a
           href="https://github.com/AakrshitThakur"

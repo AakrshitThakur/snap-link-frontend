@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Tag, Link, MousePointer, Type } from "lucide-react";
+import { Tag, Link, MousePointer, Type, CirclePlus } from "lucide-react";
 import { TagChipDelete } from "../../components/custom/tag-chip/tag-chip-delete";
 import { useFetch } from "../../hooks/use-fetch";
 import {
@@ -47,7 +47,7 @@ export default function CreateContentPage() {
 
   // custom change for tag input
   function handleChangeForTag(e: React.ChangeEvent<HTMLInputElement>) {
-    setTag(e.target.value);
+    setTag(e.target.value.trim());
   }
 
   // push new tag in form.tags
@@ -66,14 +66,12 @@ export default function CreateContentPage() {
     }
   }
 
-  console.log(form);
-
   // on-change function
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    setForm((prev) => ({ ...prev, [name]: value.trim() }));
   }
 
   // on-submit function
@@ -90,7 +88,7 @@ export default function CreateContentPage() {
     if (typeof err === "object") return setErrors(err);
 
     // waiting for api response
-    setSubmitting(loading);
+    setSubmitting(true);
 
     // invoke useFetch hook
     setUrl(baseApiUrl + "/contents/create");
@@ -106,8 +104,8 @@ export default function CreateContentPage() {
 
   // on successful creation navigate to dashboard
   useEffect(() => {
-    // set states to initial values
     if (error) {
+      // set states to initial values
       setForm({
         title: "",
         url: "",
@@ -142,21 +140,24 @@ export default function CreateContentPage() {
 
   return (
     <div
-      id="signup-page"
-      className="bg-animate color-base-100 color-base-content min-h-screen flex items-center justify-center p-4"
+      id="create-content-page"
+      className="bg-animate color-base-100 color-base-content relative h-full w-full flex items-center justify-center p-5 sm:p-10 md:p-15"
     >
-      <div className="w-full max-w-md rounded-xl shadow-xl overflow-hidden">
-        <div className="color-base-200 color-base-content p-8">
-          <div className="text-center mb-8">
+      <div className="w-full max-w-lg rounded-xl shadow-xl overflow-hidden">
+        <div className="color-base-200 color-base-content p-9">
+          <div className="flex flex-col items-center gap-1">
+            <span className="rounded-full color-accent color-accent-content w-11 sm:w-13 md:w-15 h-auto p-2">
+              <CirclePlus strokeWidth={1.25} className="w-full h-full" />
+            </span>
             <h1 className="text-3xl font-bold">Create Content</h1>
             <p className="text-sm">Creating new content</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium mb-1">Title</label>
-              <div className="relative rounded-lg mb-1">
-                <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <label className="block text-base font-medium mb-1">Title</label>
+              <div className="relative text-sm rounded-lg mb-1">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
                   {/* mail icon */}
                   <Type strokeWidth={1} />
                 </span>
@@ -164,19 +165,17 @@ export default function CreateContentPage() {
                   name="title"
                   value={form.title}
                   onChange={handleChange}
-                  className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg text-sm"
+                  className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg"
                   placeholder="e.g., My Travel Blog Post"
                 />
               </div>
-              <span className="text-error text-sm">
-                {errors.title && errors.title}
-              </span>
+              <span className="text-error">{errors.title && errors.title}</span>
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">URL</label>
-              <div className="relative rounded-lg mb-1">
-                <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <label className="block text-base font-medium mb-1">URL</label>
+              <div className="relative text-sm rounded-lg mb-1">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
                   <Link strokeWidth={1} />
                 </span>
                 <input
@@ -184,26 +183,24 @@ export default function CreateContentPage() {
                   type="text"
                   value={form.url}
                   onChange={handleChange}
-                  className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg text-sm"
+                  className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg"
                   placeholder="https://example.com/article"
                 />
               </div>
-              <span className="text-error text-sm">
-                {errors.url && errors.url}
-              </span>
+              <span className="text-error">{errors.url && errors.url}</span>
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-base font-medium mb-1">
                 Choose a type
               </label>
-              <div className="relative rounded-lg mb-1">
-                <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="relative text-sm rounded-lg mb-1">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
                   <MousePointer strokeWidth={1} />
                 </span>
                 <select
                   id="my-dropdown"
-                  className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg text-sm"
+                  className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg"
                   name="type"
                   value={form.type}
                   onChange={handleChange}
@@ -211,7 +208,7 @@ export default function CreateContentPage() {
                   {CONTENT_TYPE.map((c, idx) => (
                     <>
                       <option
-                        className="color-neutral color-neutral-content text-sm"
+                        className="color-neutral color-neutral-content"
                         key={idx}
                         value={c}
                       >
@@ -221,15 +218,14 @@ export default function CreateContentPage() {
                   ))}
                 </select>
               </div>
-              {/* <span className="text-error text-sm">
-                {errors.type && errors.type}
-              </span> */}
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">Add tags</label>
-              <div className="relative flex gap-2 rounded-lg mb-1">
-                <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <label className="block text-base font-medium mb-1">
+                Add tags
+              </label>
+              <div className="relative flex gap-2 text-sm rounded-lg mb-1">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
                   <Tag strokeWidth={1} />
                 </span>
                 <input
@@ -237,7 +233,7 @@ export default function CreateContentPage() {
                   type="text"
                   value={tag}
                   onChange={handleChangeForTag}
-                  className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg text-sm"
+                  className="solid-border block w-full pl-10 pr-4 py-2 rounded-lg"
                   placeholder="Add a tag (e.g., travel, tech, food)"
                 />
                 <div className="flex justify-center">
@@ -261,19 +257,26 @@ export default function CreateContentPage() {
                   />
                 ))}
               </div>
-              <span className="text-error text-sm">
-                {errors.tags && errors.tags}
-              </span>
+              <span className="text-error">{errors.tags && errors.tags}</span>
             </div>
 
             <div className="flex justify-center">
               <button
                 type="submit"
                 disabled={submitting}
-                className="color-success color-success-content rounded-md text-nowrap px-2 py-2 sm:px-2 sm:py-2
-              md:px-3 md:py-2 text-sm sm:text-sm md:text-base cursor-pointer"
+                className={`color-success color-success-content rounded-md text-nowrap px-2 py-2 sm:px-2 sm:py-2
+              md:px-3 md:py-2 text-sm sm:text-sm md:text-base ${
+                submitting ? "cursor-progress" : "cursor-pointer"
+              }`}
               >
-                {submitting ? "Please wait..." : "Create"}
+                {submitting ? (
+                  <div className="flex justify-center items-center gap-1">
+                    <div className="w-4 h-4 animate-spin rounded-full border-2 border-[rgb(0,10,2)] border-t-transparent" />
+                    <p>Creating...</p>
+                  </div>
+                ) : (
+                  "Create"
+                )}
               </button>
             </div>
           </form>

@@ -66,7 +66,7 @@ export default function Signout() {
   return (
     <div
       id="signout-page"
-      className="bg-animate color-base-100 color-base-content relative h-full w-full flex items-center justify-center p-4"
+      className="bg-animate color-base-100 color-base-content relative h-full w-full flex items-center justify-center p-5 sm:p-10 md:p-15"
     >
       <div className="color-base-200 color-base-content w-full max-w-lg rounded-xl p-5">
         <div className="flex flex-col items-center gap-1 mb-5">

@@ -31,8 +31,8 @@ const Sidebar = () => {
     <>
       {/* Desktop sidebar */}
       <div className="hidden md:h-screen md:flex md:flex-col md:w-64">
-        <aside className="flex h-full flex-col justify-start gap-3 p-4">
-          <div className="flex items-center justify-start px-2 pb-2 solid-border-b">
+        <aside className="flex h-full flex-col justify-start gap-3 p-5">
+          <div className="flex items-center justify-start p-2 solid-border-b">
             <Link to="/dashboard" className="flex items-center gap-2">
               <span className="h-9 w-9">
                 <img
@@ -44,9 +44,10 @@ const Sidebar = () => {
               <span className="text-lg font-semibold">SnapLink</span>
             </Link>
           </div>
-          <nav className="space-y-1">
+          {/* Navigation links */}
+          <nav>
             {isAuthenticated ? (
-              <>
+              <div className="space-y-1">
                 <div className="solid-border-b flex-1 space-y-1 pb-1">
                   <Link
                     to="/signout"
@@ -64,32 +65,41 @@ const Sidebar = () => {
                   </Link>
                 </div>
                 <FilterContents />
-              </>
+                <div className="solid-border-b">
+                  <div className="text-xs px-2">v1.0.0</div>
+                </div>
+
+                {/* social links */}
+                <SocialLinks />
+              </div>
             ) : (
-              <>
-                <Link
-                  to="/signup"
-                  className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
-                >
-                  <UserRoundPlus strokeWidth={1} className="h-5 w-5" />
-                  <span className="text-sm font-medium">Sign up</span>
-                </Link>
-                <Link
-                  to="/signin"
-                  className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
-                >
-                  <LogIn strokeWidth={1} className="h-5 w-5" />
-                  <span className="text-sm font-medium">Sign in</span>
-                </Link>
-              </>
+              <div className="space-y-1">
+                <div className="flex-1 space-y-1 pb-1">
+                  <Link
+                    to="/signup"
+                    className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
+                  >
+                    <UserRoundPlus strokeWidth={1} className="h-5 w-5" />
+                    <span className="text-sm font-medium">Sign up</span>
+                  </Link>
+                  <Link
+                    to="/signin"
+                    className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
+                  >
+                    <LogIn strokeWidth={1} className="h-5 w-5" />
+                    <span className="text-sm font-medium">Sign in</span>
+                  </Link>
+                </div>
+
+                <div className="solid-border-b">
+                  <div className="text-xs px-2">v1.0.0</div>
+                </div>
+
+                {/* social links */}
+                <SocialLinks />
+              </div>
             )}
           </nav>
-          <div className="solid-border-b">
-            <div className="text-xs px-2">v1.0.0</div>
-          </div>
-
-          {/* social links */}
-          <SocialLinks />
         </aside>
       </div>
 
@@ -100,7 +110,7 @@ const Sidebar = () => {
             className="absolute inset-0 bg-black/40"
             onClick={() => setOpen(false)}
           />
-          <aside className="color-base-300 color-base-content absolute left-0 top-0 bottom-0 z-50 w-72 p-4 flex flex-col overflow-y-scroll">
+          <aside className="color-base-300 color-base-content absolute left-0 top-0 bottom-0 z-50 w-72 flex flex-col gap-3 p-3 overflow-y-auto">
             <div className="flex items-center justify-between px-2 pb-2 solid-border-b">
               <Link to="/dashboard" className="flex items-center gap-2">
                 <span className="h-9 w-9">
@@ -114,15 +124,16 @@ const Sidebar = () => {
               </Link>
               <button
                 onClick={() => setOpen(false)}
-                className="p-2 rounded-xl hover-color cursor-pointer"
+                className="p-2 rounded-lg hover-color cursor-pointer"
                 aria-label="Close menu"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
             </div>
-            <nav className="space-y-1 p-1 solid-border-b">
+            {/* Navigation links */}
+            <nav>
               {isAuthenticated ? (
-                <>
+                <div className="space-y-1">
                   <div className="solid-border-b flex-1 space-y-1 pb-1">
                     <Link
                       to="/signout"
@@ -140,37 +151,49 @@ const Sidebar = () => {
                     </Link>
                   </div>
                   <FilterContents />
-                </>
+                  <div className="solid-border-b">
+                    <div className="text-xs px-2">v1.0.0</div>
+                  </div>
+
+                  {/* social links */}
+                  <SocialLinks />
+                </div>
               ) : (
-                <>
-                  <Link
-                    to="/signup"
-                    className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
-                  >
-                    <UserRoundPlus strokeWidth={1} className="h-5 w-5" />
-                    <span className="text-sm font-medium">Sign up</span>
-                  </Link>
-                  <Link
-                    to="/signin"
-                    className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
-                  >
-                    <LogIn strokeWidth={1} className="h-5 w-5" />
-                    <span className="text-sm font-medium">Sign in</span>
-                  </Link>
-                </>
+                <div className="space-y-1">
+                  <div className="flex-1 space-y-1 pb-1">
+                    <Link
+                      to="/signup"
+                      className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
+                    >
+                      <UserRoundPlus strokeWidth={1} className="h-5 w-5" />
+                      <span className="text-sm font-medium">Sign up</span>
+                    </Link>
+                    <Link
+                      to="/signin"
+                      className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
+                    >
+                      <LogIn strokeWidth={1} className="h-5 w-5" />
+                      <span className="text-sm font-medium">Sign in</span>
+                    </Link>
+                  </div>
+                  <div className="solid-border-b">
+                    <div className="text-xs px-2">v1.0.0</div>
+                  </div>
+
+                  {/* social links */}
+                  <SocialLinks />
+                </div>
               )}
             </nav>
-            {/* social links */}
-            <SocialLinks />
           </aside>
         </div>
       ) : (
         <span
-          className="md:hidden absolute top-0 right-0 z-50r"
+          className="md:hidden absolute top-0 right-0 z-50"
           onClick={toggleNavbar}
         >
           <SquareMenu
-            strokeWidth={1.25}
+            strokeWidth={1.35}
             className="color-base-content w-7 sm:w-8 md:w-9 h-auto mt-1 mr-1 sm:mt-2 sm:mr-2 cursor-pointer"
           />
         </span>
@@ -183,7 +206,7 @@ export default function Navbar() {
   return (
     <section
       id="navbar"
-      className="color-base-300 color-base-content h-0 md:h-auto md:overflow-y-scroll md:overflow-x-hidden"
+      className="color-base-300 color-base-content md:overflow-y-scroll md:overflow-x-hidden"
     >
       <Sidebar />
     </section>

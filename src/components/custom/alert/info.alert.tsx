@@ -1,6 +1,6 @@
 export default function InfoAlert() {
   return (
-    <p className="color-info color-info-content text-center text-xs p-3 pl-5 mr-2 mt-2 md:mr-3 md:mt-3 absolute top-0 left-1 w-2xs rounded-full rounded-tl-none">
+    <p className="color-info color-info-content text-center text-xs p-2 pl-5 mr-2 mt-2 md:mr-3 md:mt-3 absolute top-0 left-1 w-2xs rounded-full rounded-tl-none">
       <i>
         Email: <b>aak@aak.com</b> and
         Password: <b>#2004Aak</b>

@@ -26,8 +26,6 @@ export default function DeleteContent() {
   // custom hook to fetch api
   const { data, loading, error } = useFetch<ContentBasicApi>(url, options);
 
-  console.log(data, loading, error);
-
   // call api on click
   function deleteContentById() {
     setIsSubmitting(loading);
@@ -62,14 +60,14 @@ export default function DeleteContent() {
   return (
     <div
       id="delete-content-page"
-      className="bg-animate color-base-100 color-base-content min-h-screen flex items-center justify-center p-4"
+      className="bg-animate color-base-100 color-base-content relative h-full w-full flex items-center justify-center p-5 sm:p-10 md:p-15"
     >
-      <div className="color-base-200 color-base-content solid-border w-full max-w-md rounded-lg p-6">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-foreground text-pretty">
-            <Trash2 />
-          </h2>
-        </div>
+      <div className="color-base-200 color-base-content solid-border w-full max-w-md rounded-lg p-5">
+        <h2 className="flex items-center justify-between text-lg font-semibold text-foreground text-pretty">
+          <span className="rounded-full color-accent color-accent-content w-11 sm:w-13 md:w-15 h-auto p-2">
+            <Trash2 strokeWidth={1.25} className="w-full h-full" />
+          </span>
+        </h2>
 
         <div className="mt-4 text-sm text-muted-foreground">
           Are you sure you want to delete this content?
@@ -87,9 +85,18 @@ export default function DeleteContent() {
             onClick={deleteContentById}
             disabled={isSubmitting}
             type="button"
-            className="color-error color-error-content rounded-md px-3 py-2 text-sm font-medium cursor-pointer"
+            className={`color-error color-error-content rounded-md px-3 py-2 text-sm font-medium ${
+              isSubmitting ? "cursor-progress" : "cursor-pointer"
+            }`}
           >
-            {isSubmitting ? "Please wait..." : "Confirm"}
+            {isSubmitting ? (
+              <div className="flex justify-center items-center gap-1">
+                <div className="animate-spin border-2 border-[rgb(0,10,2)] border-t-transparent rounded-full h-4 w-4" />
+                <p>Deleting...</p>
+              </div>
+            ) : (
+              "Confirm"
+            )}
           </button>
         </div>
       </div>

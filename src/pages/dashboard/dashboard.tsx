@@ -30,10 +30,6 @@ export default function Dashboard() {
   // setting states for dashboard
   const [contents, setContents] = useState<Content[] | undefined>(undefined);
 
-  // setting states for use-fetch hook
-  // const [url, setUrl] = useState<string>("");
-  // const [options, setOptions] = useState<RequestInit | undefined>(undefined);
-
   const { data, loading, error } = useFetch<GetAllContentApi>(url, options);
 
   useEffect(() => {
@@ -52,10 +48,12 @@ export default function Dashboard() {
     );
   }, []);
 
+  // handle api response
   useEffect(() => {
     if (data) {
       setContents(data?.contents);
       successNotification(data.message);
+      return;
     }
     if (error) {
       // api error
@@ -66,12 +64,12 @@ export default function Dashboard() {
   return (
     <main
       id="dashboard"
-      className="bg-animate color-base-100 color-base-content h-screen flex flex-col overflow-y-scroll mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8"
+      className="bg-animate color-base-100 color-base-content relative h-full w-full flex flex-col mx-auto max-w-7xl p-5 sm:p-10 md:p-10"
     >
       {/* loading during API execution */}
       {loading || !data ? (
         <div
-          className="flex justify-center items-center min-h-screen"
+          className="flex justify-center items-center h-full w-full"
           role="status"
         >
           <BasicSpinner />
@@ -79,14 +77,14 @@ export default function Dashboard() {
         </div>
       ) : (
         <>
-          <section className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <section className="mb-6 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
             <h1 className="text-pretty text-2xl font-semibold">All Contents</h1>
 
             <div className="flex items-center gap-3">
               <Link to="/links">
                 <button
                   type="button"
-                  className="color-secondary color-secondary-content inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-sm font-medium leading-none cursor-pointer"
+                  className="color-secondary color-secondary-content inline-flex items-center gap-1 rounded-xl border px-4 py-2 text-sm font-medium leading-none cursor-pointer"
                 >
                   <Share2 className="h-4 w-4" aria-hidden />
                   <span>Share Content</span>
@@ -115,7 +113,7 @@ export default function Dashboard() {
             </section>
           ) : (
             <section className="flex-1" aria-label="Notes list">
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+              <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
                 {contents?.map((c, idx) => (
                   <ContentCard key={idx} content={c} />
                 ))}
