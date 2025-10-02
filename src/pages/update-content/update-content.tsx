@@ -234,7 +234,7 @@ export default function UpdateContent() {
                 <label className="block text-base font-medium mb-1">
                   Choose a type
                 </label>
-                <div className="relative rounded-lg mb-1">
+                <div className="relative text-sm rounded-lg mb-1">
                   <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
                     <MousePointer strokeWidth={1} />
                   </span>

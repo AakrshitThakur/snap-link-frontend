@@ -1,10 +1,9 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Frown } from "lucide-react";
-import { ShareableContentCard } from "../../components/custom/s-content-card/s-content-card";
-// import type { Content } from "../../custom-types/content.type";
 import { useFetch } from "../../hooks/use-fetch";
 import { useSelector, useDispatch } from "react-redux";
 import { setCallApi } from "../../features/content/content-api-call";
+import { ShareableContentCard } from "../../components/custom/shareables/s-content-card/s-content-card";
 import {
   successNotification,
   errorNotification,
@@ -14,12 +13,12 @@ import type {
   Content,
 } from "../../custom-types/content.type";
 import type { AppDispatch, RootState } from "../../store/store";
-import { useEffect, useState } from "react";
+import Error from "../../components/custom/errors/errors";
 import BasicSpinner from "../../components/custom/spinners/basic-spinner";
 
 const baseApiUrl = import.meta.env.VITE_BASE_API_URL;
 
-export default function ShareableContents() {
+export default function ShareableDashboard() {
   const { linkId } = useParams();
 
   // get states / setters to get / call api for contents
@@ -33,13 +32,7 @@ export default function ShareableContents() {
   const [contents, setContents] = useState<Content[] | null>(null);
   const [username, setUsername] = useState<string>("");
 
-  // setting states for use-fetch hook
-  // const [url, setUrl] = useState<string>("");
-  // const [options, setOptions] = useState<RequestInit | undefined>(undefined);
-
   const { data, loading, error } = useFetch<ShareableContentsApi>(url, options);
-
-  console.log(data, loading, username, error);
 
   useEffect(() => {
     // call api on mounting
@@ -55,41 +48,17 @@ export default function ShareableContents() {
         },
       })
     );
-    // setUrl(baseApiUrl + "/contents/all");
-    // setOptions({
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   credentials: "include",
-    // });
   }, []);
 
   useEffect(() => {
     if (data?.contents) {
       // do not want to call api on intervals
-      // dispatch(
-      //   setCallApi({
-      //     url: "",
-      //     options: undefined,
-      //   })
-      // );
-      // setUrl("");
-      // setOptions(undefined);
       setUsername(data.username || "");
       setContents(data?.contents);
       successNotification(data.message);
     }
     if (error) {
       // api error
-      // dispatch(
-      //   setCallApi({
-      //     url: "",
-      //     options: undefined,
-      //   })
-      // );
-      // setUrl("");
-      // setOptions(undefined);
       errorNotification(error.message);
     }
   }, [data, error]);
@@ -97,7 +66,7 @@ export default function ShareableContents() {
   return (
     <main
       id="shareable-dashboard"
-      className="bg-animate color-base-100 color-base-content h-screen flex flex-col overflow-y-scroll mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8"
+      className="bg-animate color-base-100 color-base-content relative h-full w-full flex flex-col mx-auto max-w-7xl p-5 sm:p-10 md:p-10"
     >
       {/* loading during API execution */}
       {loading || !data ? (
@@ -117,12 +86,9 @@ export default function ShareableContents() {
           </section>
 
           {contents && contents.length < 1 ? (
-            <section className="flex-1 flex flex-col justify-center items-center">
-              <p className="flex gap-1">
-                No contents found
-                <Frown strokeWidth={1} />
-              </p>
-            </section>
+            <div className="flex-1 flex flex-col justify-center items-center">
+              <Error text="No contents found" />
+            </div>
           ) : (
             <section aria-label="Notes list">
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">

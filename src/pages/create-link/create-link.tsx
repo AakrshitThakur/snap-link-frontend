@@ -109,7 +109,7 @@ export default function CreateLink() {
   return (
     <div
       id="create-link-page"
-      className="bg-animate color-base-100 color-base-content relative h-full w-ful flex items-center justify-center p-5 sm:p-10 md:p-15"
+      className="bg-animate color-base-100 color-base-content relative h-full w-full flex items-center justify-center p-5 sm:p-10 md:p-15"
     >
       <div className="color-base-200 color-base-content solid-border w-full max-w-lg flex flex-col items-center justify-center rounded-lg p-5">
         <div className="mb-3">

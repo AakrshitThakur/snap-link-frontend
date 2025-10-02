@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ContentCard } from "../../components/custom/content-card/content-card";
 // import type { Content } from "../../custom-types/content.type";
-import { Brain, Frown, Plus, Share2 } from "lucide-react";
+import { Brain, Plus, Share2 } from "lucide-react";
 import { useFetch } from "../../hooks/use-fetch";
 import { useSelector, useDispatch } from "react-redux";
 import { setCallApi } from "../../features/content/content-api-call";
@@ -16,6 +16,7 @@ import type {
 import type { AppDispatch, RootState } from "../../store/store";
 import { useEffect, useState } from "react";
 import BasicSpinner from "../../components/custom/spinners/basic-spinner";
+import Error from "../../components/custom/errors/errors";
 
 const baseApiUrl = import.meta.env.VITE_BASE_API_URL;
 
@@ -105,12 +106,9 @@ export default function Dashboard() {
           </section>
 
           {contents && contents.length < 1 ? (
-            <section className="flex-1 flex flex-col justify-center items-center">
-              <p className="flex gap-1">
-                No contents found
-                <Frown strokeWidth={1} />
-              </p>
-            </section>
+            <div className="w-full h-full flex justify-center items-center">
+              <Error text="No contents found" />
+            </div>
           ) : (
             <section className="flex-1" aria-label="Notes list">
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">

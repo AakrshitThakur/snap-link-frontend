@@ -46,14 +46,14 @@ export default function FilterContents() {
   }
 
   return (
-    <section id="filter-contents" className="pb-1">
+    <section id="filter-contents" className="pb-1 text-sm">
       {Object.entries(FILTER_CONTENTS).map(([c, L]) => (
         <button
-          className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
+          className="hover-color flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
           onClick={() => filterContents(c)}
         >
           <L strokeWidth={1} className="h-5 w-5" />
-          <span className="text-sm font-medium">{capitalizeFirstChar(c)}</span>
+          <span className="font-medium">{capitalizeFirstChar(c)}</span>
         </button>
       ))}
     </section>

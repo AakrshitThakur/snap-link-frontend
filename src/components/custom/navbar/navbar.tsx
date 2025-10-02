@@ -32,6 +32,7 @@ const Sidebar = () => {
       {/* Desktop sidebar */}
       <div className="hidden md:h-screen md:flex md:flex-col md:w-64">
         <aside className="flex h-full flex-col justify-start gap-3 p-5">
+          {/* logo */}
           <div className="flex items-center justify-start p-2 solid-border-b">
             <Link to="/dashboard" className="flex items-center gap-2">
               <span className="h-9 w-9">
@@ -48,20 +49,20 @@ const Sidebar = () => {
           <nav>
             {isAuthenticated ? (
               <div className="space-y-1">
-                <div className="solid-border-b flex-1 space-y-1 pb-1">
+                <div className="solid-border-b flex-1 space-y-1 text-sm pb-1">
                   <Link
                     to="/signout"
                     className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
                   >
                     <LogOut strokeWidth={1} className="h-5 w-5" />
-                    <span className="text-sm font-medium">Sign out</span>
+                    <span className="font-medium">Sign out</span>
                   </Link>
                   <Link
                     to="/dashboard"
                     className="hover-color text-sm flex items-center gap-3 w-full px-3 py-2 rounded-xl cursor-pointer"
                   >
                     <LayoutDashboard strokeWidth={1} className="h-5 w-5" />
-                    <span className="text-sm font-medium">Dashboard</span>
+                    <span className="font-medium">Dashboard</span>
                   </Link>
                 </div>
                 <FilterContents />
@@ -189,11 +190,11 @@ const Sidebar = () => {
         </div>
       ) : (
         <span
-          className="md:hidden absolute top-0 right-0 z-50"
+          className="inline md:hidden absolute top-0 right-0 z-50"
           onClick={toggleNavbar}
         >
           <SquareMenu
-            strokeWidth={1.35}
+            strokeWidth={1.25}
             className="color-base-content w-7 sm:w-8 md:w-9 h-auto mt-1 mr-1 sm:mt-2 sm:mr-2 cursor-pointer"
           />
         </span>

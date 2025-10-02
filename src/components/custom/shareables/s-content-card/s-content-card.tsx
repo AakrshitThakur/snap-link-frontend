@@ -3,13 +3,13 @@ import { Check, Copy } from "lucide-react";
 import {
   capitalizeFirstChar,
   getContentTypeColor,
-} from "../../../utils/content.utils";
-import { TagChip } from "../tag-chip/tag-chip";
+} from "../../../../utils/content.utils";
+import { TagChip } from "../../tag-chip/tag-chip";
 import {
   infoNotification,
   errorNotification,
-} from "../../../utils/toast.utils";
-import type { Content } from "../../../custom-types/content.type";
+} from "../../../../utils/toast.utils";
+import type { Content } from "../../../../custom-types/content.type";
 
 type ContentCardProps = {
   content: Content;

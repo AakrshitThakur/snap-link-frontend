@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "../custom/navbar/navbar";
-import ShareableNavbar from "../custom/s-navbar/s-navbar";
+import ShareableNavbar from "../custom/shareables/s-navbar/s-navbar";
 import Signup from "../../pages/signup/signup";
 import Signin from "../../pages/signin/signin";
 import Signout from "../../pages/signout/signout";
@@ -9,7 +9,7 @@ import CreateContent from "../../pages/create-content/create-content";
 import UpdateContent from "../../pages/update-content/update-content";
 import DeleteContent from "../../pages/delete-content/delete-content";
 import CreateLink from "../../pages/create-link/create-link";
-import ShareableContents from "../../pages/s-contents/s-contents";
+import ShareableDashboard from "../../pages/s-dashboard/s-dashboard";
 import IsAuthenticated from "../../wrappers/is-authenticated";
 import "./app.css";
 
@@ -36,6 +36,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+// Render a shareable navbar if url is in this - `/links/:linkId` format
 function App() {
   return (
     <BrowserRouter>
@@ -89,8 +90,8 @@ function App() {
             element={
               <>
                 <ShareableNavbar />
-                <div className="right">
-                  <ShareableContents />
+                <div className="right flex-1">
+                  <ShareableDashboard />
                 </div>
               </>
             }
