@@ -66,7 +66,7 @@ export default function ShareableDashboard() {
   return (
     <main
       id="shareable-dashboard"
-      className="bg-animate color-base-100 color-base-content relative h-full w-full flex flex-col mx-auto max-w-7xl p-5 sm:p-10 md:p-10"
+      className="bg-animate color-base-100 color-base-content relative h-full w-full flex flex-col mx-auto p-5 sm:p-10 md:p-10"
     >
       {/* loading during API execution */}
       {loading || !data ? (

@@ -31,11 +31,14 @@
   --hover-color: rgba(255, 255, 255, 0.1);
   --depth: 1;
   --noise: 0;
+
+  /* override default toast variables */
+  --toastify-toast-padding: 0.5rem;
+  --toastify-toast-min-height: auto;
 }
 
 html {
   font-family: "Open Sans";
-  /* letter-spacing: -0.015rem; */
   background-color: var(--color-base-100);
   color: var(--color-base-content);
   overflow-y: hidden;
@@ -159,8 +162,17 @@ html {
   border-radius: 4px;
 }
 * {
-  scrollbar-width:thin;
+  scrollbar-width: thin;
   scrollbar-color: oklch(93.426% 0.102 94.555) transparent;
 }
 
-
+/* override default toast mobile behaviour */
+@media only screen and (max-width: 480px) {
+  .Toastify__toast-container .Toastify__toast {
+    --toastify-toast-width: 50% !important;
+    --toastify-toast-padding: 0.35rem !important;
+    border-radius: 6px !important;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
