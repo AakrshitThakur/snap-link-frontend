@@ -2,9 +2,9 @@ import { Zoom } from "react-toastify";
 import type { ToastUi } from "../custom-types/toast.type";
 
 const TOAST_UI: ToastUi = {
-  position: "top-right",
+  position: "top-center",
   closeButton: false,
-  autoClose: 300000,
+  autoClose: 2500,
   transition: Zoom,
   hideProgressBar: true,
   icon: false,

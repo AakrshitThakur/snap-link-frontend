@@ -4,8 +4,8 @@ import { TOAST_UI } from "../constants/toast.constants";
 
 function successNotification(text: string) {
   toast(
-    <div className="text-sm leading-tight">
-      <CircleCheckBig className="inline" />
+    <div className="text-xs sm:text-xs md:text-sm leading-tight">
+      <CircleCheckBig className="inline-block w-5 h-auto" />
       <p className="inline"> {text}</p>
     </div>,
     {
@@ -18,8 +18,8 @@ function successNotification(text: string) {
 
 function errorNotification(text: string) {
   toast(
-    <div className="text-sm leading-tight">
-      <CircleAlert className="inline" />
+    <div className="text-xs sm:text-xs md:text-sm leading-tight">
+      <CircleAlert className="inline-block w-5 h-auto" />
       <p className="inline"> {text}</p>
     </div>,
     {
@@ -32,8 +32,8 @@ function errorNotification(text: string) {
 
 function infoNotification(text: string) {
   toast(
-    <div className="text-sm leading-tight">
-      <Info className="inline" />
+    <div className="text-xs sm:text-xs md:text-sm leading-tight">
+      <Info className="inline-block w-5 h-auto" />
       <p className="inline"> {text}</p>
     </div>,
     {

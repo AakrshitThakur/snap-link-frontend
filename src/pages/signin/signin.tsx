@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAsAuthenticated } from "../../features/auth/auth-slice";
-import { AtSign, KeyRound, LogIn } from "lucide-react";
+import { AtSign, KeyRound, LogIn, } from "lucide-react";
 import { validateSignin } from "../../utils/auth.utils";
 import { useFetch } from "../../hooks/use-fetch";
 import {
@@ -12,6 +12,7 @@ import {
 import type { AppDispatch } from "../../store/store";
 import type { AuthApiResponse } from "../../custom-types/auth.type";
 import InfoAlert from "../../components/custom/alert/info.alert";
+// import FloatingIcons from "../../components/custom/floating-icons/floating-icons";
 
 const baseApiUrl = import.meta.env.VITE_BASE_API_URL;
 
@@ -108,8 +109,10 @@ export default function Signin() {
       className="bg-animate color-base-100 color-base-content relative h-full w-full flex items-center justify-center p-5 sm:p-10 md:p-15"
     >
       <InfoAlert />
-      <div className="w-full max-w-lg rounded-xl overflow-hidden">
-        <div className="color-base-200 color-base-content p-8">
+
+      <div className="w-full relative max-w-lg">
+
+        <div className="color-base-200 color-base-content rounded-xl p-8">
           <div className="flex flex-col items-center gap-1">
             <span className="rounded-full color-accent color-accent-content w-11 sm:w-13 md:w-15 h-auto p-2">
               <LogIn strokeWidth={1.25} className="w-full h-full" />

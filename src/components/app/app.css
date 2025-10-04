@@ -37,8 +37,11 @@
   --toastify-toast-min-height: auto;
 }
 
+* {
+  font-family: "Happy Monkey", system-ui;
+}
+
 html {
-  font-family: "Open Sans";
   background-color: var(--color-base-100);
   color: var(--color-base-content);
   overflow-y: hidden;
@@ -170,9 +173,23 @@ html {
 @media only screen and (max-width: 480px) {
   .Toastify__toast-container .Toastify__toast {
     --toastify-toast-width: 50% !important;
-    --toastify-toast-padding: 0.35rem !important;
+    --toastify-toast-padding: 0.5rem !important;
     border-radius: 6px !important;
     margin-top: 0.5rem;
-    margin-right: 0.5rem;
+  }
+}
+
+/* floating icon animation */
+.floating-icon {
+  animation: upDown 5s normal infinite;
+}
+@keyframes upDown {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(15px);
   }
 }
